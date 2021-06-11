@@ -1,0 +1,31 @@
+<html>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <body class="flex flex-col justify-center m-0 p-0 h-auto w-auto">
+        <meta charset="utf-8">
+
+	    <title>Cap'chat</title>
+        
+        <div class="text-2xl m-auto mb-6 mt-10">
+            Cap'chat
+        </div>
+
+        <iframe id="capchat"
+                src="http://127.0.0.1:8080/capchat"
+                endLink="https://youtu.be/dQw4w9WgXcQ" 
+                frameborder="0" 
+                height="548" 
+                width="920.5"
+                class="m-auto"
+                ></iframe>
+
+        </div>
+        <script>
+            var elem = document.getElementById("capchat");
+            var endLink = elem.getAttribute("endLink");
+            elem.removeAttribute("endLink");
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="http://127.0.0.1:8080/horloge.js"></script>
+        <script src="http://127.0.0.1:8080/capchat.js"></script>
+    </body>
+</html>
