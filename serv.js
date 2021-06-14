@@ -11,7 +11,7 @@ var options = {
     app.use(express.static(__dirname + '/public'));
     
     app.get('/', function(req, res){
-        res.end('/capchat.html',options);
+        app.redirect(302, '/capchat');
     });
 
     app.get('/capchat', function(req, res){
@@ -56,7 +56,19 @@ var options = {
         var filePath = path.join("public/capchat.js");
 
         res.writeHead(200, {
-            'Content-Type': 'text/script',
+            'Content-Type': 'text/javascript',
+            'Access-Control-Allow-Origin':'*'
+            });
+
+        var readStream = fileSystem.createReadStream(filePath);
+        readStream.pipe(res);
+    });
+
+    app.get('/inject.js', function(req, res) {
+        var filePath = path.join("public/inject.js");
+
+        res.writeHead(200, {
+            'Content-Type': 'text/javascript',
             'Access-Control-Allow-Origin':'*'
             });
 
@@ -68,7 +80,7 @@ var options = {
         var filePath = path.join("public/horloge.js");
 
         res.writeHead(200, {
-            'Content-Type': 'text/script',
+            'Content-Type': 'text/javascript',
             'Access-Control-Allow-Origin':'*'
             });
 
@@ -88,6 +100,9 @@ var options = {
         readStream.pipe(res);
     });
 
+    app.get("*", function(req, res){
+        res.send("Page not found");
+    })
     
 
 app.listen(8080);
